@@ -6,5 +6,4 @@ public class GameData : MonoBehaviour
 {
     public int TotalScore;
     public bool IcePlayer = true;
-
 }
