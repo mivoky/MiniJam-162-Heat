@@ -10,8 +10,14 @@ public class ActivityItem : MonoBehaviour
 
     public bool Active;
 
+    private AudioSource _audioSource;
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     public void Execute()
     {
+        _audioSource.Play();
         Active = !Active;
         if (Active)
         {

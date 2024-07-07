@@ -20,16 +20,16 @@ public class EndLevelWall : MonoBehaviour
     {
         if (_score >= UnlockScore)
         {
-            _meshRenderer.material = ActiveMaterial;
+            _meshRenderer.material = InActiveMaterial;
             _boxCollider.enabled = false;
         }
         else 
         {
-            _meshRenderer.material = InActiveMaterial;
+            _meshRenderer.material = ActiveMaterial;
             _boxCollider.enabled = true;
         }
     }
-    private void Score(int score)
+    public void Score(int score)
     {
         _score = _score + score;
     }

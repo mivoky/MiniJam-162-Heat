@@ -17,7 +17,15 @@ public class ChangeMode : MonoBehaviour
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-        
+        _meshRenderer.material = Deactivate;
+        if (IceMode)
+        {
+            _meshRenderer.material = Ice;
+        }
+        if (FireMod) 
+        {
+            _meshRenderer.material = Fire;
+        }
     }
     private void Update()
     {

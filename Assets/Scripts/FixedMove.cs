@@ -1,24 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Timeline;
 
 public class FixedMove : MonoBehaviour
 {
+
     public float Speed = 5.0f;
     public float CellSize = 1.0f;//размер ячейки, а также расстояние, на которое нужно сдвинуться, если была нажата кнопка
-    bool _isMoving = false;//находимся ли в движении
-    bool _isBlocked; //Заблокировано ли движение
-    float _distanceToObject;
-    Vector3 _direction;//направление движения
-    Vector3 _destPos;//позиция куда двигаемся
+    private bool _isMoving = false;//находимся ли в движении
+    private bool _isBlocked; //Заблокировано ли движение
+    private float _distanceToObject;
+    private Vector3 _direction;//направление движения
+    private Vector3 _destPos;//позиция куда двигаемся
 
+    private AudioSource _audioSource;
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if (_isMoving == true)
         {
             float step = Speed * Time.deltaTime;//расстояние, которое нужно пройти в текущем кадре
             transform.position = Vector3.MoveTowards(transform.position, _destPos, step);//двигаем персонажа
-                                                                                        //достигли нужной позиции - отключаем движение, включаем ловлю нажатых клавиш
-            if (transform.position == _destPos) _isMoving = false;
+            if (transform.position == _destPos) _isMoving = false;//достигли нужной позиции - отключаем движение, включаем ловлю нажатых клавиш
         }
 
         RaycastHit hit;
@@ -37,6 +43,7 @@ public class FixedMove : MonoBehaviour
             //move up
             _direction = transform.forward;
             _destPos = transform.position + _direction * CellSize;
+            _audioSource.Play();
             _isMoving = true;
         }
         if (Input.GetKeyUp(KeyCode.E) && _isMoving == false)
