@@ -19,12 +19,12 @@ public class InteractiveBlock : MonoBehaviour
         if (!active)
         {
             _meshRenderer.material = ActiveBlock;
-            _boxCollider.enabled = false;
+            _boxCollider.enabled = true;
         }
         else 
         {
             _meshRenderer.material = InActiveBlock;
-            _boxCollider.enabled = true;
+            _boxCollider.enabled = false;
         }
     }
 }

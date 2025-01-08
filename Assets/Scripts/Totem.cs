@@ -5,11 +5,6 @@ using UnityEngine.Events;
 
 public class Totem : MonoBehaviour
 {
-    public AudioClip ActivateIce;
-    public AudioClip ActivateFire;
-
-    public GameData GameData;
-
     public bool IceActive;
 
     public Material Ice;
@@ -24,24 +19,29 @@ public class Totem : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _audioSource = GetComponent<AudioSource>();
-    }
-    public void Execute(bool ice)
-    {
-        if (ice && !IceActive)
+        if (IceActive)
         {
             IceActionActive?.Invoke();
             _meshRenderer.material = Ice;
-            GameData.TotalScore += 1;
-            IceActive = !IceActive;
-            _audioSource.PlayOneShot(ActivateIce, 0.7F);
         }
-        if (!ice && IceActive)
+    }
+    public void Execute(bool ice)
+    {
+        Debug.Log(ice);
+        if (ice == true && !IceActive)
         {
+            IceActionActive?.Invoke();
+            _meshRenderer.material = Ice;
+            IceActive = !IceActive;
+            _audioSource.Play();
+        }
+        if (ice == false && IceActive == true)
+        {
+            Debug.Log("ChangeMode to Fire");
             FireActionActive?.Invoke();
             _meshRenderer.material = Fire;
-            GameData.TotalScore -= 1;
             IceActive = !IceActive;
-            _audioSource.PlayOneShot(ActivateFire, 0.7f);
+            _audioSource.Play();
         }
     }
 }

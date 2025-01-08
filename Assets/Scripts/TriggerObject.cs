@@ -10,9 +10,10 @@ public class TriggerObject : MonoBehaviour
     public UnityEvent action;
 
     public bool Test = false;
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
-        action?.Invoke();
+        action.Invoke();
+        Debug.Log("Suka");
     }
     private void Update()
     {

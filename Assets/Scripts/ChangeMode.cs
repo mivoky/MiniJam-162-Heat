@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeMode : MonoBehaviour
 {
     public GameData GameData;
-
+    
     public Material Ice;
     public Material Fire;
     public Material Deactivate;
@@ -13,9 +13,11 @@ public class ChangeMode : MonoBehaviour
     public bool IceMode = false;
     public bool FireMod = false;
 
+    private int _layerMask;
     private MeshRenderer _meshRenderer;
     private void Start()
     {
+        _layerMask = ~(1 << LayerMask.NameToLayer("Ignore RayCast"));
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.material = Deactivate;
         if (IceMode)
@@ -27,19 +29,31 @@ public class ChangeMode : MonoBehaviour
             _meshRenderer.material = Fire;
         }
     }
-    private void Update()
+    //private void Update()
+    //{
+    //    RaycastHit hit;
+
+    //    if (Physics.Raycast(transform.position, transform.up * 5, out hit, _layerMask))
+    //    {
+    //        if (IceMode && hit.collider.gameObject.GetComponent<CharacterController>() != null)
+    //        {
+    //            GameData.IcePlayer = true;
+    //        }
+    //        if (FireMod && hit.collider.gameObject.GetComponent<CharacterController>() != null)
+    //        {
+    //            GameData.IcePlayer = false;
+    //        }
+    //    }
+
+    private void OnTriggerEnter(Collider other)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.up, out hit))
+        if (IceMode && other.GetComponent<CharacterController>() != null) 
         {
-            if (IceMode)
-            {
-                GameData.IcePlayer = true;
-            }
-            else if (FireMod)
-            {
-                GameData.IcePlayer = false;
-            }
+            GameData.IcePlayer = true;
+        }
+        if (FireMod && other.GetComponent<CharacterController>() != null)
+        {
+            GameData.IcePlayer = false;
         }
     }
     public void ChangeElement(bool ice)

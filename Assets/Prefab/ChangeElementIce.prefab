@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &3913188305495909670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893022678175124380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1.0640721, z: 0.8}
+  m_Center: {x: 0, y: 0.53203607, z: 0}
 --- !u!64 &6136517861866566661
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14,19 +27,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: ce09020b9e51a1d4f936a8170d930588, type: 3}
---- !u!65 &3913188305495909670
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893022678175124380}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8, z: 0.8}
-  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1001 &703151390369839176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38,6 +38,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChangeElementIce
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407170848216052692, guid: 974ef0d0b3b74474b9051ba925861a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1407170848216052693, guid: 974ef0d0b3b74474b9051ba925861a21,
         type: 3}
